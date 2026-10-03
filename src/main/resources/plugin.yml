@@ -1,0 +1,12 @@
+name: PiricraftEssentials
+description: $description
+version: '${version}'
+
+main: fr.piricraft.piricraftEssentials.PiricraftEssentials
+api-version: '26.2'
+load: POSTWORLD
+depend:
+  - PiricraftCore
+
+authors: [ Lepipassier ]
+website: https://github.com/Piricraft

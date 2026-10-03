@@ -25,7 +25,7 @@ public class UserWarp {
         return name;
     }
 
-    public UUID getOwerUuid() {
+    public UUID getOwnerUuid() {
         return owerUuid;
     }
 

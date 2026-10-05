@@ -18,6 +18,10 @@ java {
 }
 
 tasks {
+    withType<JavaCompile>().configureEach {
+        options.encoding = "UTF-8"
+    }
+
     runServer {
         minecraftVersion("26.2")
         jvmArgs("-Xms2G", "-Xmx2G", "-Dcom.mojang.eula.agree=true")

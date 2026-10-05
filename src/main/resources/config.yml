@@ -1,0 +1,9 @@
+﻿homes:
+  default-limit: 2
+  limits:
+    vip: 5
+    vip_plus: 10
+warps:
+  default-limit: 1
+teleportation:
+  warmup-seconds: 3

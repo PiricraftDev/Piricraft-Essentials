@@ -1,12 +1,47 @@
-name: PiricraftEssentials
-description: $description
+﻿name: PiricraftEssentials
+description: ${description}
 version: '${version}'
-
 main: fr.piricraft.piricraftEssentials.PiricraftEssentials
 api-version: '26.2'
 load: POSTWORLD
-depend:
-  - PiricraftCore
-
-authors: [ Lepipassier ]
+depend: [PiricraftCore]
+authors: [Lepipassier]
 website: https://github.com/PiricraftDev/Piricraft-Essentials
+commands:
+  home:
+    usage: /home [nom]
+  sethome:
+    usage: /sethome [nom]
+  delhome:
+    usage: /delhome <nom>
+  homes: {}
+  warp:
+    usage: /warp <nom>
+  setwarp:
+    usage: /setwarp <nom>
+  delwarp:
+    usage: /delwarp <nom>
+  warps: {}
+  tp:
+    usage: /tp <joueur> [destination]
+    permission: piricraft.essentials.tp
+  tpa:
+    usage: /tpa <joueur>
+  tpaccept:
+    usage: /tpaccept [joueur]
+  tpdeny:
+    usage: /tpdeny [joueur]
+  back: {}
+  spawn: {}
+  god:
+    permission: piricraft.essentials.god
+  fly:
+    permission: piricraft.essentials.fly
+  heal:
+    permission: piricraft.essentials.heal
+  feed:
+    permission: piricraft.essentials.feed
+  vanish:
+    permission: piricraft.essentials.vanish
+  tpthere:
+    permission: piricraft.essentials.tpthere

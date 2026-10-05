@@ -10,7 +10,7 @@ public class UserHome {
 
     public UserHome(String name, Location location, long createdAt) {
         this.name = name;
-        this.location = location;
+        this.location = location.clone();
         this.createdAt = createdAt;
     }
 
@@ -19,7 +19,7 @@ public class UserHome {
     }
 
     public Location getLocation() {
-        return location;
+        return location.clone();
     }
 
     public long getCreatedAt() {

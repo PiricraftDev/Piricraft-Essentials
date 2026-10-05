@@ -23,7 +23,12 @@ public class PlayerConnectionListener implements Listener {
 
     @EventHandler
     public void onAsyncPreLogin(AsyncPlayerPreLoginEvent event) {
-        dbManager.loadProfileAsync(event.getUniqueId()).join();
+        try {
+            dbManager.loadProfileAsync(event.getUniqueId()).join();
+        } catch (RuntimeException exception) {
+            event.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "Impossible de charger votre profil. Réessayez plus tard.");
+            plugin.getLogger().severe("Impossible de charger le profil " + event.getUniqueId() + ": " + exception.getMessage());
+        }
     }
 
     @EventHandler

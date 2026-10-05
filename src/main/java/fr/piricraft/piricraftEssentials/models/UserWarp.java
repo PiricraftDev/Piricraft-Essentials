@@ -8,15 +8,15 @@ import java.util.UUID;
 public class UserWarp {
 
     private final String name;
-    private final UUID owerUuid;
+    private final UUID ownerUuid;
     private final Location location;
     private final Material icon;
     private final String permission;
 
     public UserWarp(String name, UUID ownerUuid, Location location, Material icon, String permission) {
         this.name = name;
-        this.owerUuid = ownerUuid;
-        this.location = location;
+        this.ownerUuid = ownerUuid;
+        this.location = location.clone();
         this.icon = icon;
         this.permission = permission;
     }
@@ -26,11 +26,11 @@ public class UserWarp {
     }
 
     public UUID getOwnerUuid() {
-        return owerUuid;
+        return ownerUuid;
     }
 
     public Location getLocation() {
-        return location;
+        return location.clone();
     }
 
     public Material getIcon() {

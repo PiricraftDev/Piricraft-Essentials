@@ -8,6 +8,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.Map;
 import java.util.UUID;
@@ -25,6 +26,7 @@ public class TeleportManager {
     }
 
     public void teleportWithWarmup(Player player, Location target, int seconds, Runnable onSuccess) {
+        if (target == null || target.getWorld() == null || !player.isOnline()) return;
         UUID uuid = player.getUniqueId();
 
         cancelPendingTeleport(uuid);
@@ -94,13 +96,11 @@ public class TeleportManager {
     }
 
     private void executeTeleport(Player player, Location target, Runnable onSuccess) {
-        EssentialsProfile profile = dbManager.getProfileFromCache(player.getUniqueId());
-        if (profile != null) {
-            profile.setLastLocation(player.getLocation());
-        }
-
-        player.teleportAsync(target).thenAccept(success -> {
+        Location previousLocation = player.getLocation().clone();
+        player.teleportAsync(target).thenAccept(success -> plugin.getServer().getScheduler().runTask(plugin, () -> {
             if (success) {
+                EssentialsProfile profile = dbManager.getProfileFromCache(player.getUniqueId());
+                if (profile != null) profile.setLastLocation(previousLocation);
                 player.playSound(player.getLocation(), Sound.ITEM_CHORUS_FRUIT_TELEPORT, 1.0f, 1.0f);
                 if (onSuccess != null) {
                     onSuccess.run();
@@ -108,6 +108,6 @@ public class TeleportManager {
             } else {
                 player.sendMessage(TextUtils.color("<red>[Téléportation]</red> Échec de la téléportation."));
             }
-        });
+        }));
     }
 }
